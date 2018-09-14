@@ -1,0 +1,26 @@
+---
+- name: "Check kcptun version"
+  slurp:
+    src: "/etc/kcptun/VERSION"
+  ignore_errors: yes
+  register: kcptunver
+
+- include_tasks: install.yml
+  when: kcptunver.content|default(None)|b64decode|int != kcptun_version
+
+- name: Generate config
+  template:
+    src: config.json.j2
+    dest: /etc/kcptun/config.json
+  notify: restart kcptun
+
+- name: Upload systemd unit file
+  copy:
+    src: kcptun.service
+    dest: /etc/systemd/system/kcptun.service
+
+- name: Enable service
+  systemd:
+    name: kcptun
+    state: started
+    enabled: yes

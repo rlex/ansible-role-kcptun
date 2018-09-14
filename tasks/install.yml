@@ -1,0 +1,31 @@
+- name: Create kcptun directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/kcptun
+    - /etc/kcptun
+
+- name: Download package
+  get_url:
+    url: "https://github.com/xtaci/kcptun/releases/download/v{{ kcptun_version }}/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
+    dest: "/tmp/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
+    checksum: "sha1:{{ kcptun_checksum }}"
+
+- name: Extract kcptun
+  unarchive:
+    src: "/tmp/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
+    dest: /opt/kcptun/
+    creates: "/etc/kcptun/version-{{ kcptun_version }}"
+    remote_src: yes
+
+- name: Create directory
+  file:
+    path: /etc/kcptun
+    state: directory
+
+- name: "Create VERSION file"
+  copy:
+    content: "{{ kcptun_version }}"
+    dest: "/etc/kcptun/VERSION"
+    mode: 0600
