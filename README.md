@@ -10,7 +10,7 @@ kcptun_target: 127.0.0.1:443
 kcptun_server: 0.0.0.0:29990
 kcptun_mode: fast
 kcptun_crypt: aes
-kcptun_dscp: 46
+kcptun_dscp: 0
 kcptun_parityshard: 3
 kcptun_datashard: 10
 kcptun_mtu: 1400
