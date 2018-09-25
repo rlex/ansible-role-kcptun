@@ -16,8 +16,8 @@
   unarchive:
     src: "/tmp/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
     dest: /opt/kcptun/
-    creates: "/etc/kcptun/version-{{ kcptun_version }}"
     remote_src: yes
+  notify: restart kcptun
 
 - name: Create directory
   file:
