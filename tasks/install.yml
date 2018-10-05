@@ -6,6 +6,17 @@
     - /opt/kcptun
     - /etc/kcptun
 
+- name: Get list of releases
+  uri:
+    url: https://api.github.com/repos/xtaci/kcptun/releases/latest
+    return_content: yes
+  register: kcptun_releases
+
+- name: Check for update
+  debug:
+    msg: "Newer version {{ kcptun_releases.json.tag_name }} available, consider updating"
+  when: kcptun_releases.json.tag_name != kcptun_version|string
+
 - name: Download package
   get_url:
     url: "https://github.com/xtaci/kcptun/releases/download/v{{ kcptun_version }}/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
