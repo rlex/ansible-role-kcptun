@@ -19,11 +19,6 @@
     remote_src: yes
   notify: restart kcptun
 
-- name: Create directory
-  file:
-    path: /etc/kcptun
-    state: directory
-
 - name: "Create VERSION file"
   copy:
     content: "{{ kcptun_version }}"
