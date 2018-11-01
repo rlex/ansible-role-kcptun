@@ -13,8 +13,9 @@
   register: kcptun_releases
 
 - name: Check for update
-  debug:
+  fail:
     msg: "Newer version {{ kcptun_releases.json.tag_name }} available, consider updating"
+  ignore_errors: yes
   when: kcptun_releases.json.tag_name != kcptun_version|string
 
 - name: Download package
