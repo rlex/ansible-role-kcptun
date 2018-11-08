@@ -1,23 +1,30 @@
 ---
-- name: "Check kcptun version"
+- name: "Get installed kcptun version"
   slurp:
     src: "/etc/kcptun/VERSION"
   ignore_errors: yes
   register: kcptunver
 
+- name: Get list of releases
+  uri:
+    url: https://api.github.com/repos/xtaci/kcptun/releases/latest
+    return_content: yes
+  register: kcptun_releases
+
+- name: Warn if new version has been found
+  fail:
+    msg: "Newer version {{ kcptun_releases.json.tag_name }} available, consider updating"
+  ignore_errors: yes
+  when: kcptun_releases.json.tag_name|replace('v', '')|int != kcptun_version|int
+
 - include_tasks: install.yml
-  when: kcptunver.content|default(None)|b64decode|int != kcptun_version
+  when: kcptunver.content|default(None)|b64decode|int != kcptun_version|int
 
 - name: Generate config
   template:
     src: config.json.j2
     dest: /etc/kcptun/config.json
   notify: restart kcptun
-
-- name: Upload systemd unit file
-  copy:
-    src: kcptun.service
-    dest: /etc/systemd/system/kcptun.service
 
 - name: Enable service
   systemd:

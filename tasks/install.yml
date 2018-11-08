@@ -6,18 +6,6 @@
     - /opt/kcptun
     - /etc/kcptun
 
-- name: Get list of releases
-  uri:
-    url: https://api.github.com/repos/xtaci/kcptun/releases/latest
-    return_content: yes
-  register: kcptun_releases
-
-- name: Warn if new version has been found
-  fail:
-    msg: "Newer version {{ kcptun_releases.json.tag_name }} available, consider updating"
-  ignore_errors: yes
-  when: kcptun_releases.json.tag_name != kcptun_version|string
-
 - name: Download package
   get_url:
     url: "https://github.com/xtaci/kcptun/releases/download/v{{ kcptun_version }}/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz"
@@ -30,6 +18,11 @@
     dest: /opt/kcptun/
     remote_src: yes
   notify: restart kcptun
+
+- name: Upload systemd unit file
+  copy:
+    src: kcptun.service
+    dest: /etc/systemd/system/kcptun.service
 
 - name: "Create VERSION file"
   copy:
