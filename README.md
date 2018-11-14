@@ -4,8 +4,8 @@ Should work on any system with systemd, so basically with any modern linux.
 
 Configurable parameters (default ones):
 ```
-kcptun_version: 20180810
-kcptun_checksum: e0e031dfb4025e6d50734bb9587e19e1b75fe81f
+kcptun_version: 20181114
+kcptun_checksum: 5d0cfb655e3ddd004f00e798d0aa802b22e88702
 kcptun_target: 127.0.0.1:443
 kcptun_server: 0.0.0.0:29990
 kcptun_mode: fast
