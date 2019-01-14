@@ -1,5 +1,5 @@
-kcptun_version: 20190104
-kcptun_checksum: fcb173d5417a0a57c34b1d9e2d5e83876ee9c834
+kcptun_version: 20190109
+kcptun_checksum: 1cb077f0ca3872b5c641d7780f133225dfa77c0d
 kcptun_target: 127.0.0.1:443
 kcptun_server: 0.0.0.0:29990
 kcptun_mode: fast
