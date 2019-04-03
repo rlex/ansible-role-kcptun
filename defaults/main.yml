@@ -18,6 +18,7 @@ kcptun_resend: 0
 kcptun_nc: 0
 kcptun_keepalive: 10
 kcptun_sockbuf: 4194304
+kcptun_smuxbuf: 4194304
 kcptun_key: my_default_password
 kcptun_snmplog:
 kcptun_snmpperiod: 60
