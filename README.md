@@ -4,8 +4,9 @@ Should work on any system with systemd, so basically with any modern linux.
 
 Configurable parameters (default ones):
 ```
-kcptun_version: 20181114
-kcptun_checksum: 5d0cfb655e3ddd004f00e798d0aa802b22e88702
+kcptun_version: 20190416
+kcptun_checksum: f530f8442cfd8c0f96e57cac191b99c3a9cdd312
+kcptun_architecture: amd64
 kcptun_target: 127.0.0.1:443
 kcptun_server: 0.0.0.0:29990
 kcptun_mode: fast
@@ -24,6 +25,7 @@ kcptun_resend: 0
 kcptun_nc: 0
 kcptun_keepalive: 10
 kcptun_sockbuf: 4194304
+kcptun_smuxbuf: 4194304
 kcptun_key: my_default_password
 kcptun_snmplog:
 kcptun_snmpperiod: 60
