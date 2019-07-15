@@ -1,5 +1,5 @@
-kcptun_version: 20190611
-kcptun_checksum: cdd7340409c67ef779912b98f13a637a0c5723d1
+kcptun_version: 20190715
+kcptun_checksum: cdcd760628b82420c231c132bec91fb4bae6ed1a
 kcptun_architecture: amd64
 kcptun_target: 127.0.0.1:443
 kcptun_server: 0.0.0.0:29990
