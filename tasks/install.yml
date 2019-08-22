@@ -20,8 +20,8 @@
   notify: restart kcptun
 
 - name: Upload systemd unit file
-  copy:
-    src: kcptun.service
+  template:
+    src: kcptun.service.j2
     dest: /etc/systemd/system/kcptun.service
 
 - name: "Create VERSION file"
